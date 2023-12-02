@@ -18,3 +18,5 @@ export const columns: Column[] = [
 		title: 'Finished',
 	},
 ]
+
+export const liItems = ["Profile", "Log Out"]

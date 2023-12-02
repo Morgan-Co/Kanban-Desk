@@ -36,8 +36,8 @@ type UpdateTask = {
 }
 
 type ShuffleTask = {
-	oldIndex:number
-	newIndex: number
+	activeIndex:number
+	overIndex: number
 }
 
 const tasksSlice = createSlice({
@@ -79,9 +79,19 @@ const tasksSlice = createSlice({
 			).length
 		},
 		shuffleTasks(state, action: PayloadAction<ShuffleTask>) {
-			const { oldIndex, newIndex } = action.payload
-			state.tasks = arrayMove(state.tasks, oldIndex, newIndex)
+			const { activeIndex, overIndex } = action.payload
+			state.tasks = arrayMove(state.tasks, activeIndex, overIndex)
 		},
+		shuffleColumnTasks(state, action) {
+			const { activeIndex, overIndex } = action.payload
+			state.tasks[activeIndex].columnId = state.tasks[overIndex].columnId
+			state.tasks = arrayMove(state.tasks, activeIndex, overIndex + 1)
+		},
+		shuffleEmpty(state, action){
+			const { oldIndex, newIndex, overId } = action.payload
+			state.tasks[oldIndex].columnId = overId
+			state.tasks = arrayMove(state.tasks, oldIndex, newIndex)
+		}
 	},
 })
 
@@ -93,6 +103,8 @@ export const {
 	trackActiveTasks,
 	trackFinishedTasks,
 	shuffleTasks,
+	shuffleColumnTasks,
+	shuffleEmpty
 } = tasksSlice.actions
 
 export default tasksSlice.reducer

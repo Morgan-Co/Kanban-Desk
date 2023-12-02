@@ -24,7 +24,7 @@ const Footer = () => {
 				<div>Finished tasks: {finishedTasks}</div>
 			</div>
 			<div>
-				<div>Kanban board by Morgan, 2024</div>
+				<div>Kanban board by N, {new Date().getFullYear()}</div>
 			</div>
 		</footer>
 	)
