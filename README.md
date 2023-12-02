@@ -11,6 +11,9 @@ Technologies:
   - `React`
   - `TypeScript`
   - `Redux`
-  - `Teilwind CSS`
+  - `Tailwind CSS`
   - `Vite`
   - `Vitest`
+
+     <font color="#935cd1">Этот текст будет красным цветом</font>
+     <font color="red">Этот текст будет красным цветом</font>
